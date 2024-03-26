@@ -1,0 +1,18 @@
+CREATE TABLE KeyValueStore (
+    id INTEGER NOT NULL PRIMARY KEY,
+    key TEXT NOT NULL,
+    value BLOB NOT NULL,
+    iv BLOB NOT NULL
+);
+
+insert:
+INSERT INTO KeyValueStore(key, value, iv) VALUES (?, ?, ?);
+
+get:
+SELECT * FROM KeyValueStore WHERE (key = ?);
+
+getByIv:
+SELECT count(*) FROM KeyValueStore WHERE (iv = ?);
+
+delete:
+DELETE FROM KeyValueStore WHERE (key = ?);

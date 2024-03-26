@@ -1,0 +1,9 @@
+<resources>
+    <string name="logging_in">Logging in...</string>
+    <string name="loading_dashboard">Loading dashboard</string>
+
+    <string name="make_login">Make login request</string>
+    <string name="make_dashboard">Make dashboard request</string>
+
+    <string name="generic_error">Error %1$d with message %2$s</string>
+</resources>
