@@ -34,14 +34,14 @@ object UserViewModel {
         return@transaction user
     }
 
-    fun createSession(user: UsersDao) : String = transaction {
+    fun createSession(sessUser: UsersDao) : String = transaction {
         var newToken = UUID.randomUUID().toString()
 
         while (!SessionsDao.find { SessionsDao.SessionsTable.token eq newToken }.empty())
             newToken = UUID.randomUUID().toString()
 
         SessionsDao.new {
-            uid = user
+            user = sessUser
             token = newToken
         }
 
@@ -56,7 +56,7 @@ object UserViewModel {
 
             //Segment 0: UID
             //Segment 1: Token
-            return@transaction SessionsDao.find { SessionsDao.SessionsTable.token eq headerSplit[1] }.limit(1).firstOrNull()?.uid?.uid == headerSplit[0]
+            return@transaction SessionsDao.find { SessionsDao.SessionsTable.token eq headerSplit[1] }.limit(1).firstOrNull()?.user?.uid == headerSplit[0]
         }
 
         return@transaction false

@@ -10,7 +10,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 class SessionsDao(id: EntityID<Int>) : Entity<Int>(id) {
     object SessionsTable : IntIdTable() {
-        val uid = reference("user", UsersDao.UsersTable)
+        val user = reference("user", UsersDao.UsersTable)
         val token = char("token", 36)
 
         fun initDb() {
@@ -23,6 +23,6 @@ class SessionsDao(id: EntityID<Int>) : Entity<Int>(id) {
 
     companion object : EntityClass<Int, SessionsDao>(SessionsTable)
 
-    var uid by UsersDao referencedOn SessionsTable.uid
+    var user by UsersDao referencedOn SessionsTable.user
     var token by SessionsTable.token
 }
