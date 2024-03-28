@@ -7,4 +7,5 @@ object FlightDataRecorderConfig {
     var logServer: String? = null
     var appKey: String? = null
     var batchLimit = 20 //Once there's this many log lines, the logs will be uploaded
+    var additionalMetadata = mutableMapOf<String, String>()
 }

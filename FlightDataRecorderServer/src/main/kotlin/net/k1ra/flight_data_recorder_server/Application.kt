@@ -15,6 +15,7 @@ import kotlinx.serialization.json.Json
 import net.k1ra.flight_data_recorder.feature.logging.Log
 import net.k1ra.flight_data_recorder_server.model.dao.authentication.SessionsDao
 import net.k1ra.flight_data_recorder_server.model.dao.authentication.UsersDao
+import net.k1ra.flight_data_recorder_server.routes.batchUpload
 import net.k1ra.flight_data_recorder_server.routes.dashboard
 import net.k1ra.flight_data_recorder_server.routes.login
 import org.jetbrains.exposed.sql.Database
@@ -54,5 +55,8 @@ fun Application.module() {
         //Web dashboard API
         login()
         dashboard()
+
+        //Client API
+        batchUpload()
     }
 }

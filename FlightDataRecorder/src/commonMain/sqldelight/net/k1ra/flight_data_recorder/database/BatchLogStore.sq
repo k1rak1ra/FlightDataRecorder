@@ -1,0 +1,20 @@
+CREATE TABLE BatchLogStore (
+    id INTEGER NOT NULL PRIMARY KEY,
+    data BLOB NOT NULL,
+    iv BLOB NOT NULL
+);
+
+insert:
+INSERT INTO BatchLogStore(data, iv) VALUES (?, ?);
+
+countAll:
+SELECT count(*) FROM BatchLogStore;
+
+getAll:
+SELECT * FROM BatchLogStore ORDER BY id ASC;
+
+getByIv:
+SELECT count(*) FROM BatchLogStore WHERE (iv = ?);
+
+deleteBeforeId:
+DELETE FROM BatchLogStore WHERE (id <= ?);

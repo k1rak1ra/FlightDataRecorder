@@ -12,7 +12,8 @@ logback = "1.5.3"
 kotlin-coroutines = "1.8.0"
 kotlin-datetime = "0.5.0"
 kotlin-serialization = "1.6.2"
-network = "1.0.7"
+k1ra-network = "1.0.7"
+k1ra-sharedpref = "1.0.1"
 sqlDelight = "2.0.1"
 uuid = "0.8.2"
 androidx-crypto = "1.0.0"
@@ -41,7 +42,8 @@ ktor-server-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json"
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
 kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlin-datetime" }
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
-network = { module = "net.k1ra.hoodies_network_kmm:HoodiesNetworkKmm", version.ref = "network" }
+k1ra-network = { module = "net.k1ra.hoodies_network_kmm:HoodiesNetworkKmm", version.ref = "k1ra-network" }
+k1ra-sharedpref = { module = "net.k1ra.shared_pref_kmm:SharedPrefKmm", version.ref = "k1ra-sharedpref" }
 sqldelight-driver-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
 sqldelight-driver-jdbc = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
 sqldelight-driver-ios = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" }

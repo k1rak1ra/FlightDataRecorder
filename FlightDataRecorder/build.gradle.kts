@@ -46,9 +46,14 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.kotlin.datetime)
             implementation(libs.kotlin.coroutines)
-            implementation(libs.network)
+
+            implementation(libs.k1ra.network)
+            implementation(libs.k1ra.sharedpref)
+
             implementation(libs.bundles.sqldelight.common)
+
             implementation(libs.uuid)
+
             implementation(libs.korlibs.crypto)
         }
 
