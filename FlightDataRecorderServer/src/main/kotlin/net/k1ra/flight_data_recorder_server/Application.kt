@@ -2,17 +2,13 @@ package net.k1ra.flight_data_recorder_server
 
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
-import io.ktor.server.application.call
 import io.ktor.server.application.install
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.http.content.staticResources
 import io.ktor.server.netty.Netty
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.server.response.respondText
-import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import kotlinx.serialization.json.Json
-import net.k1ra.flight_data_recorder.feature.logging.Log
 import net.k1ra.flight_data_recorder_server.model.dao.authentication.SessionsDao
 import net.k1ra.flight_data_recorder_server.model.dao.authentication.UsersDao
 import net.k1ra.flight_data_recorder_server.routes.batchUpload

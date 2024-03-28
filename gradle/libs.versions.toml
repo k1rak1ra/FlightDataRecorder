@@ -26,6 +26,7 @@ argon2 = "2.11"
 ktor-client = "3.0.0-beta-2-eap-923"
 precompose = "1.6.0-rc05"
 koin = "3.6.0-alpha3"
+oshi = "6.5.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -68,6 +69,7 @@ precompose-core = { module = "moe.tlaster:precompose", version.ref = "precompose
 precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
 precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
 koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+oshi-core = { module = "com.github.oshi:oshi-core", version.ref = "oshi" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

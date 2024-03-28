@@ -12,11 +12,11 @@ internal actual object DriverFactory {
         if (!dbLocation.exists())
             dbLocation.mkdirs()
 
-        val dbFile = File("${StorageManager.getLocalStorageDir(collection)}$collection.db")
+        val dbFile = File("${StorageManager.getLocalStorageDir(collection)}FDRBatch.db")
         return if (dbFile.exists()) {
-            JdbcSqliteDriver("jdbc:sqlite:${StorageManager.getLocalStorageDir(collection)}$collection.db")
+            JdbcSqliteDriver("jdbc:sqlite:${StorageManager.getLocalStorageDir(collection)}FDRBatch.db")
         } else {
-            JdbcSqliteDriver("jdbc:sqlite:${StorageManager.getLocalStorageDir(collection)}$collection.db").apply {
+            JdbcSqliteDriver("jdbc:sqlite:${StorageManager.getLocalStorageDir(collection)}FDRBatch.db").apply {
                 FlightDataRecorderDatabase.Schema.create(this)
             }
         }

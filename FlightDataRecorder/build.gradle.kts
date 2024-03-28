@@ -6,6 +6,7 @@ plugins {
     id("maven-publish")
     alias(libs.plugins.kover)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.jetbrainsCompose)
 }
 
 group = "net.k1ra.flight_data_recorder"
@@ -55,6 +56,12 @@ kotlin {
             implementation(libs.uuid)
 
             implementation(libs.korlibs.crypto)
+
+            implementation(libs.oshi.core)
+
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.ui)
         }
 
         commonTest.dependencies {
