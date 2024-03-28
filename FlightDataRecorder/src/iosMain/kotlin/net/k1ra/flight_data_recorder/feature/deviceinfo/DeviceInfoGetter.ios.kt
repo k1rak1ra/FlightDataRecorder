@@ -1,5 +1,6 @@
 package net.k1ra.flight_data_recorder.feature.deviceinfo
 
+import platform.Foundation.NSProcessInfo
 import platform.UIKit.UIDevice
 
 actual object DeviceInfoGetter {
@@ -12,15 +13,15 @@ actual object DeviceInfoGetter {
     }
 
     actual fun getNumCpuCores(): Int {
-        TODO("Not yet implemented")
+        return NSProcessInfo.processInfo.activeProcessorCount.toInt()
     }
 
     actual fun getAvailableMemoryMb(): Int {
-        TODO("Not yet implemented")
+        return (NSProcessInfo.processInfo.physicalMemory / 1048576u).toInt()
     }
 
     actual fun getSystemProductName(): String {
-        TODO("Not yet implemented")
+        return UIDevice.currentDevice.name
     }
 
 }

@@ -68,7 +68,6 @@ internal class BatchLoggingManager(val appKey: String) {
     fun consumeLog(tag: String, message: String, level: LogLevels, additionalMetadata: Map<String, String>) = CoroutineScope(Dispatchers.IO).launch {
         //Convert the log line and all additional metadata to JSON
         val logJson = convertLogToJsonString(tag, message, level, additionalMetadata)
-        println(logJson)
 
         //Encrypt the log line
         var iv = crypto.generateIv()
