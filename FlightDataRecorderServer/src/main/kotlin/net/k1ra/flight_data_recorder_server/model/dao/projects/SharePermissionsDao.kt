@@ -13,7 +13,7 @@ class SharePermissionsDao(id: EntityID<Int>) : Entity<Int>(id) {
     object SharePermissionsTable : IntIdTable() {
         val user = reference("user", UsersDao.UsersTable)
         val project = reference("project", ProjectsDao.ProjectsTable)
-        val permissionLevel = enumeration("permissionLevel", PermissionLevel::class)
+        val permissionLevel = enumeration("permissionLevel", SharePermissionLevel::class)
 
         fun initDb() {
             transaction {
@@ -23,7 +23,7 @@ class SharePermissionsDao(id: EntityID<Int>) : Entity<Int>(id) {
         }
     }
 
-    enum class PermissionLevel {
+    enum class SharePermissionLevel {
         WRITE, READONLY
     }
 
