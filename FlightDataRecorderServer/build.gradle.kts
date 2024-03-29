@@ -25,6 +25,7 @@ dependencies {
     implementation(libs.exposed.jdbc)
     implementation(libs.exposed.dao)
     implementation(libs.exposed.kotlin.datetime)
+    implementation(libs.exposed.json)
 
     implementation(libs.argon2)
 

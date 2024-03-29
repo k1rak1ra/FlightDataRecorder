@@ -10,17 +10,21 @@ import io.ktor.server.routing.post
 import io.ktor.server.routing.route
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
+import net.k1ra.flight_data_recorder_server.viewmodel.logging.LogsViewModel
+import net.k1ra.flight_data_recorder_server.viewmodel.projects.ProjectsViewModel
 
 fun Route.batchUpload() {
     route("/client/batchupload") {
         post {
-            val appKey = call.request.header("Authorization")?.replace("Bearer ","") ?: ""
-            val data = Json.parseToJsonElement(call.receiveText()) as JsonArray
+            val project = ProjectsViewModel.getProject(call.request.header("Authorization")?.replace("Bearer ","") ?: "")
 
-            println("APP KEY $appKey")
-            println(data.toString())
+            if (project != null) {
+                LogsViewModel.insertBatch(project, Json.parseToJsonElement(call.receiveText()) as JsonArray)
 
-           call.respond(HttpStatusCode.OK)
+                call.respond(HttpStatusCode.OK)
+            } else {
+                call.respond(HttpStatusCode.NotFound)
+            }
         }
     }
 }

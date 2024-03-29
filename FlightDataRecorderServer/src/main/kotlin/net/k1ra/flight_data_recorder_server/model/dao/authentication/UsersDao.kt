@@ -1,5 +1,7 @@
 package net.k1ra.flight_data_recorder_server.model.dao.authentication
 
+import net.k1ra.flight_data_recorder_server.model.dao.projects.ProjectsDao
+import net.k1ra.flight_data_recorder_server.model.dao.projects.SharePermissionsDao
 import net.k1ra.flight_data_recorder_server.viewmodel.authentication.PasswordViewModel
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.EntityClass
@@ -50,4 +52,9 @@ class UsersDao(id: EntityID<Int>) : Entity<Int>(id) {
     var uid by UsersTable.uid
     var admin by UsersTable.admin
     var native by UsersTable.native
+
+    //Objects belonging to this user
+    val sessions by SessionsDao referrersOn SessionsDao.SessionsTable.user
+    val ownedProjects by ProjectsDao referrersOn ProjectsDao.ProjectsTable.owner
+    val projectsSharedWithUser by SharePermissionsDao referrersOn SharePermissionsDao.SharePermissionsTable.user
 }
