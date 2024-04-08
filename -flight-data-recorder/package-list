@@ -1,0 +1,42 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:net.k1ra.flight_data_recorder.feature.config////PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderConfig///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/-flight-data-recorder-config/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderConfig/additionalMetadata/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/-flight-data-recorder-config/additional-metadata.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderConfig/appKey/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/-flight-data-recorder-config/app-key.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderConfig/batchLimit/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/-flight-data-recorder-config/batch-limit.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderConfig/logLevel/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/-flight-data-recorder-config/log-level.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderConfig/logServer/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/-flight-data-recorder-config/log-server.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.cryptography////PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.cryptography/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.cryptography/KeyManager///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.cryptography/-key-manager/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.cryptography/KeyManager/getKey/#net.k1ra.sharedprefkmm.SharedPreferences/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.cryptography/-key-manager/get-key.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo////PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter/getAvailableMemoryMb/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/get-available-memory-mb.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter/getNumCpuCores/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/get-num-cpu-cores.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter/getOsType/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/get-os-type.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter/getOsVersion/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/get-os-version.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter/getSystemProductName/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/get-system-product-name.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging////PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/Log///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/Log/d/#kotlin.String#kotlin.String#kotlin.collections.Map[kotlin.String,kotlin.String]/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log/d.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/Log/e/#kotlin.String#kotlin.String#kotlin.collections.Map[kotlin.String,kotlin.String]/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log/e.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/Log/i/#kotlin.String#kotlin.String#kotlin.collections.Map[kotlin.String,kotlin.String]/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log/i.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/Log/v/#kotlin.String#kotlin.String#kotlin.collections.Map[kotlin.String,kotlin.String]/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log/v.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/Log/w/#kotlin.String#kotlin.String#kotlin.collections.Map[kotlin.String,kotlin.String]/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log/w.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/Log/wtf/#kotlin.String#kotlin.String#kotlin.collections.Map[kotlin.String,kotlin.String]/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log/wtf.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels.DEBUG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/-d-e-b-u-g/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels.ERROR///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/-e-r-r-o-r/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels.INFO///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/-i-n-f-o/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels.VERBOSE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/-v-e-r-b-o-s-e/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels.WARNING///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/-w-a-r-n-i-n-g/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels.WTF///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/-w-t-f/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels/entries/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/entries.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels/valueOf/#kotlin.String/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/value-of.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels/values/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/values.html
+net.k1ra.flight_data_recorder.feature.config
+net.k1ra.flight_data_recorder.feature.cryptography
+net.k1ra.flight_data_recorder.feature.deviceinfo
+net.k1ra.flight_data_recorder.feature.logging
+
