@@ -3,7 +3,7 @@ package net.k1ra.flight_data_recorder.feature.deviceinfo
 import oshi.SystemInfo
 
 
-actual object DeviceInfoGetter {
+internal actual object DeviceInfoGetter {
     private val si = SystemInfo()
 
     actual fun getOsType(): String {

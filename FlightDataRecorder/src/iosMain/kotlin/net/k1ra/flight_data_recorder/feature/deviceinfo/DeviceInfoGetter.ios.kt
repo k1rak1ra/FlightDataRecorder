@@ -3,7 +3,7 @@ package net.k1ra.flight_data_recorder.feature.deviceinfo
 import platform.Foundation.NSProcessInfo
 import platform.UIKit.UIDevice
 
-actual object DeviceInfoGetter {
+internal actual object DeviceInfoGetter {
     actual fun getOsType(): String {
         return "iOS"
     }

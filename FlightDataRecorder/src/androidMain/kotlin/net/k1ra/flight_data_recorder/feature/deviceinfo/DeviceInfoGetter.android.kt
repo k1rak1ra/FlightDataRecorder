@@ -5,7 +5,7 @@ import android.content.Context
 import net.k1ra.sharedprefkmm.SharedPrefKmmInitContentProvider
 
 
-actual object DeviceInfoGetter {
+internal actual object DeviceInfoGetter {
     actual fun getOsType(): String {
         return "Android"
     }
