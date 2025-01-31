@@ -4,7 +4,7 @@ import korlibs.crypto.SecureRandom
 import net.k1ra.sharedprefkmm.SharedPreferences
 import net.k1ra.sharedprefkmm.util.Constants
 
-object KeyManager {
+internal object KeyManager {
     private var key: ByteArray? = null
 
     suspend fun getKey(prefs: SharedPreferences) : ByteArray {

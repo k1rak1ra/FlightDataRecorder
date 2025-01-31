@@ -1,6 +1,6 @@
 package net.k1ra.flight_data_recorder.feature.deviceinfo
 
-expect object DeviceInfoGetter {
+internal expect object DeviceInfoGetter {
 
     fun getOsType() : String
 
