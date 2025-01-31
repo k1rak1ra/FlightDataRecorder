@@ -1,32 +1,35 @@
 [versions]
-agp = "8.2.2"
-android-compileSdk = "34"
+agp = "8.5.2"
+android-compileSdk = "35"
 android-minSdk = "24"
-android-targetSdk = "34"
-androidx-activityCompose = "1.8.2"
-compose = "1.6.4"
-compose-plugin = "1.6.1"
-kotlin = "1.9.23"
-ktor = "2.3.9"
-logback = "1.5.3"
-kotlin-coroutines = "1.8.0"
-kotlin-datetime = "0.5.0"
-kotlin-serialization = "1.6.2"
-k1ra-network = "1.0.7"
-k1ra-sharedpref = "1.0.1"
-sqlDelight = "2.0.1"
-uuid = "0.8.2"
+android-targetSdk = "35"
+androidx-activityCompose = "1.10.0"
+compose = "1.7.7"
+compose-multiplatform = "1.7.3"
+kotlin = "2.1.0"
+ktor = "3.0.3"
+logback = "1.5.16"
+kotlin-coroutines = "1.10.1"
+kotlin-datetime = "0.6.1"
+kotlin-serialization = "1.8.0"
+k1ra-network = "1.1.0"
+k1ra-sharedpref = "1.1.0"
+sqlDelight = "2.1.0-wasm"
+uuid = "0.8.4"
 androidx-crypto = "1.0.0"
 korlibs = "5.3.2"
-kover = "0.7.6"
-dokka = "1.9.20"
-exposed = "0.48.0"
-postgres = "42.7.2"
+kover = "0.9.1"
+dokka = "2.0.0"
+exposed = "0.58.0"
+postgres = "42.7.4"
 argon2 = "2.11"
-ktor-client = "3.0.0-beta-2-eap-923"
 precompose = "1.6.0-rc05"
-koin = "3.6.0-alpha3"
+koin = "4.0.2"
 oshi = "6.5.0"
+sqlJs = "1.8.0"
+sqlJsWorker = "2.0.2"
+webPackPlugin = "9.1.0"
+browser = "0.3"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -37,7 +40,6 @@ compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
-ktor-server-tests = { module = "io.ktor:ktor-server-tests-jvm", version.ref = "ktor" }
 ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
 ktor-server-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
@@ -45,14 +47,15 @@ kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.r
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
 k1ra-network = { module = "net.k1ra.hoodies_network_kmm:HoodiesNetworkKmm", version.ref = "k1ra-network" }
 k1ra-sharedpref = { module = "net.k1ra.shared_pref_kmm:SharedPrefKmm", version.ref = "k1ra-sharedpref" }
-sqldelight-driver-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
-sqldelight-driver-jdbc = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
-sqldelight-driver-ios = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" }
+sqldelight-driver-android = { module = "me.gulya.sqldelight:android-driver", version.ref = "sqlDelight" }
+sqldelight-driver-jdbc = { module = "me.gulya.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
+sqldelight-driver-web = { module = "me.gulya.sqldelight:web-worker-driver", version.ref = "sqlDelight" }
+sqldelight-driver-ios = { module = "me.gulya.sqldelight:native-driver", version.ref = "sqlDelight" }
+sqldelight-coroutines = { module = "me.gulya.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
+sqldelight-runtime = { module = "me.gulya.sqldelight:runtime", version.ref = "sqlDelight" }
 uuid = { module = "com.benasher44:uuid", version.ref="uuid" }
 androidx-crypto = { module = "androidx.security:security-crypto", version.ref="androidx-crypto" }
 korlibs-crypto = { module = "com.soywiz.korge:korlibs-crypto", version.ref="korlibs" }
-sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
-sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelight" }
 postgres = { module = "org.postgresql:postgresql", version.ref = "postgres" }
 exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
 exposed-dao = { module = "org.jetbrains.exposed:exposed-dao", version.ref = "exposed" }
@@ -60,26 +63,28 @@ exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "e
 exposed-kotlin-datetime = { module = "org.jetbrains.exposed:exposed-kotlin-datetime", version.ref = "exposed" }
 exposed-json = { module = "org.jetbrains.exposed:exposed-json", version.ref = "exposed" }
 argon2 = { module = "de.mkammerer:argon2-jvm", version.ref = "argon2" }
-ktor-client-core-wasm = { module = "io.ktor:ktor-client-core-wasm-js", version.ref = "ktor-client" }
-ktor-client-wasm-js = { module = "io.ktor:ktor-http-wasm-js", version.ref = "ktor-client"}
-ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor-client"}
-ktor-client-serialization = { module = "io.ktor:ktor-serialization", version.ref = "ktor-client"}
-ktor-client-serialization-kotlinx = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-client"}
-ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor-client"}
+ktor-client-core-wasm = { module = "io.ktor:ktor-client-core-wasm-js", version.ref = "ktor" }
+ktor-client-wasm-js = { module = "io.ktor:ktor-http-wasm-js", version.ref = "ktor"}
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor"}
+ktor-client-serialization = { module = "io.ktor:ktor-serialization", version.ref = "ktor"}
+ktor-client-serialization-kotlinx = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor"}
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor"}
 precompose-core = { module = "moe.tlaster:precompose", version.ref = "precompose" }
 precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
 precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
 koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 oshi-core = { module = "com.github.oshi:oshi-core", version.ref = "oshi" }
+kotlinx-browser = { module = "org.jetbrains.kotlinx:kotlinx-browser-wasm-js", version.ref = "browser" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
+sqlDelight = { id = "me.gulya.sqldelight", version.ref = "sqlDelight" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

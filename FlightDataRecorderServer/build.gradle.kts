@@ -29,7 +29,6 @@ dependencies {
 
     implementation(libs.argon2)
 
-    testImplementation(libs.ktor.server.tests)
     testImplementation(libs.kotlin.test.junit)
 }
 

@@ -1,10 +1,11 @@
 package net.k1ra.flight_data_recorder.feature.batching
 
 import androidx.compose.ui.text.intl.Locale
+import app.cash.sqldelight.async.coroutines.awaitAsList
+import app.cash.sqldelight.async.coroutines.awaitAsOne
 import com.benasher44.uuid.uuid4
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
@@ -22,16 +23,18 @@ import net.k1ra.flight_data_recorder.feature.cryptography.Cryptography
 import net.k1ra.flight_data_recorder.feature.database.DatabaseFactory
 import net.k1ra.flight_data_recorder.feature.deviceinfo.DeviceInfoGetter
 import net.k1ra.flight_data_recorder.feature.logging.LogLevels
+import net.k1ra.flightdatarecorder.database.BatchLogStoreQueries
 import net.k1ra.hoodies_network_kmm.HoodiesNetworkClient
 import net.k1ra.hoodies_network_kmm.result.Success
 import net.k1ra.sharedprefkmm.SharedPreferences
+import net.k1ra.sharedprefkmm.util.IODispatcher
 import kotlin.time.Duration.Companion.seconds
 
 internal class BatchLoggingManager(val appKey: String) {
     private val collection = "$appKey-FDRLogs"
     private val prefs = SharedPreferences(collection)
     private val crypto = Cryptography(prefs)
-    private val db = DatabaseFactory.provideDatabase(collection)
+    private var db: BatchLogStoreQueries? = null
     private var deviceUniqueId: String? = null
     private val httpClient = HoodiesNetworkClient.Builder().apply {
         defaultHeaders = mapOf("Authorization" to "Bearer $appKey")
@@ -40,12 +43,18 @@ internal class BatchLoggingManager(val appKey: String) {
         retryDelayDuration = 10.seconds
     }.build()
 
+    private suspend fun getDb(): BatchLogStoreQueries {
+        if (db == null)
+            db = DatabaseFactory.provideDatabase(collection)
+        return db!!
+    }
+
     //Start log line count watchdog
-    private val watchdogJob = CoroutineScope(Dispatchers.IO).launch {
+    private val watchdogJob = CoroutineScope(IODispatcher).launch {
         while (true) {
-            if (db.countAll().executeAsOne() > FlightDataRecorderConfig.batchLimit) {
+            if (getDb().countAll().awaitAsOne() > FlightDataRecorderConfig.batchLimit) {
                 //Fetch stored logs and get ID of last line
-                val allLogs = db.getAll().executeAsList()
+                val allLogs = getDb().getAll().awaitAsList()
                 val maxId = allLogs.last().id
 
                 //Decrypt all logs and convert to JsonArray
@@ -57,7 +66,7 @@ internal class BatchLoggingManager(val appKey: String) {
 
                 //Upload to server and delete from DB if uploaded successfully
                 if (httpClient.post<Unit, ByteArray>("$logServer/client/batchupload", jsonArr.toString().encodeToByteArray()) is Success)
-                    db.deleteBeforeId(maxId)
+                    getDb().deleteBeforeId(maxId)
             }
 
             //Wait a while before repeating the loop
@@ -65,20 +74,21 @@ internal class BatchLoggingManager(val appKey: String) {
         }
     }
 
-    fun consumeLog(tag: String, message: String, level: LogLevels, additionalMetadata: Map<String, String>) = CoroutineScope(Dispatchers.IO).launch {
+    fun consumeLog(tag: String, message: String, level: LogLevels, additionalMetadata: Map<String, String>) = CoroutineScope(
+        IODispatcher).launch {
         //Convert the log line and all additional metadata to JSON
         val logJson = convertLogToJsonString(tag, message, level, additionalMetadata)
 
         //Encrypt the log line
         var iv = crypto.generateIv()
 
-        while(db.getByIv(iv).executeAsOne() > 0)
+        while(getDb().getByIv(iv).awaitAsOne() > 0)
             iv = crypto.generateIv()
 
         val logEncrypted = crypto.runAes(logJson.encodeToByteArray(), iv, CipherMode.ENCRYPT)
 
         //Insert the log line into the DB
-        db.insert(logEncrypted, iv)
+        getDb().insert(logEncrypted, iv)
 
         //Start watchdog thread if inactive
         if (!watchdogJob.isActive)
