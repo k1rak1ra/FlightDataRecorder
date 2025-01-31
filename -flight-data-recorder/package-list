@@ -7,6 +7,13 @@ $dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderC
 $dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderConfig/batchLimit/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/-flight-data-recorder-config/batch-limit.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderConfig/logLevel/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/-flight-data-recorder-config/log-level.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderConfig/logServer/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/-flight-data-recorder-config/log-server.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo////PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter/getAvailableMemoryMb/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/get-available-memory-mb.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter/getNumCpuCores/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/get-num-cpu-cores.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter/getOsType/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/get-os-type.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter/getOsVersion/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/get-os-version.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter/getSystemProductName/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/get-system-product-name.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.logging////PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/index.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.logging/Log///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log/index.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.logging/Log/d/#kotlin.String#kotlin.String#kotlin.collections.Map[kotlin.String,kotlin.String]/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log/d.html
@@ -26,5 +33,5 @@ $dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels/entries/
 $dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels/valueOf/#kotlin.String/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/value-of.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels/values/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/values.html
 net.k1ra.flight_data_recorder.feature.config
+net.k1ra.flight_data_recorder.feature.deviceinfo
 net.k1ra.flight_data_recorder.feature.logging
-
