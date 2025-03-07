@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -6,7 +6,6 @@ plugins {
 }
 
 kotlin {
-    @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         moduleName = "FlightDataRecorderSharedModel"
         browser {
@@ -21,6 +20,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api(libs.kotlin.serialization)
+            implementation(libs.kotlin.datetime)
         }
     }
 }

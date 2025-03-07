@@ -13,10 +13,13 @@ import kotlinx.serialization.json.long
 import net.k1ra.flight_data_recorder.feature.logging.Log
 import net.k1ra.flight_data_recorder_server.model.dao.logging.LogsDao
 import net.k1ra.flight_data_recorder_server.model.dao.projects.ProjectsDao
+import net.k1ra.flight_data_recorder_server.viewmodel.projects.IpGeolocationViewModel
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object LogsViewModel {
-    fun insertBatch(targetProject: ProjectsDao, logs: JsonArray) {
+    fun insertBatch(targetProject: ProjectsDao, logs: JsonArray, ipStr: String) {
+        IpGeolocationViewModel.save(ipStr)
+
         logs.forEach { line ->
             CoroutineScope(Dispatchers.IO).launch {
                 transaction {
@@ -28,8 +31,9 @@ object LogsViewModel {
                             project = targetProject
                             datetime = logDatetime
                             logLine = line
+                            ipAddr = ipStr
+                            deviceId = (line["DeviceID"] as JsonPrimitive).content
                         }
-
                     } catch (e: Exception) {
                         Log.e("BatchInsert", "MALFORMED LOG LINE $e")
                     }

@@ -3,8 +3,9 @@ agp = "8.5.2"
 android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
-androidx-activityCompose = "1.10.0"
-compose = "1.7.7"
+androidx-activityCompose = "1.10.1"
+androidx-lifecycle = "2.8.4"
+compose = "1.7.8"
 compose-multiplatform = "1.7.3"
 kotlin = "2.1.0"
 ktor = "3.0.3"
@@ -13,7 +14,7 @@ kotlin-coroutines = "1.10.1"
 kotlin-datetime = "0.6.1"
 kotlin-serialization = "1.8.0"
 k1ra-network = "1.1.2"
-k1ra-sharedpref = "1.1.0"
+k1ra-sharedpref = "1.1.1"
 sqlDelight = "2.1.0-wasm"
 uuid = "0.8.4"
 androidx-crypto = "1.0.0"
@@ -23,30 +24,46 @@ dokka = "2.0.0"
 exposed = "0.58.0"
 postgres = "42.7.4"
 argon2 = "2.11"
-precompose = "1.6.0-rc05"
 koin = "4.0.2"
 oshi = "6.5.0"
 sqlJs = "1.8.0"
 sqlJsWorker = "2.0.2"
 webPackPlugin = "9.1.0"
 browser = "0.3"
+viewmodel = "2.8.4"
+navigation = "2.8.0-alpha12"
+eizo = "1.1.4"
+maxmind = "2.15.0"
+mapCompose = "0.9.4"
+qrose = "1.0.1"
+pickncrop = "1.0.0"
+aws = "1.2.28"
+ldaptive = "2.4.0"
 
 [libraries]
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
+ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
 ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
+ktor-server-call-logging = { module = "io.ktor:ktor-server-call-logging", version.ref = "ktor" }
+ktor-double = { module = "io.ktor:ktor-server-double-receive", version.ref = "ktor" }
+ktor-rate-limit = { module = "io.ktor:ktor-server-rate-limit", version.ref = "ktor" }
+ktor-forward-header = { module = "io.ktor:ktor-server-forwarded-header", version.ref = "ktor" }
 ktor-server-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
 kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlin-datetime" }
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
 k1ra-network = { module = "net.k1ra.hoodies_network_kmm:HoodiesNetworkKmm", version.ref = "k1ra-network" }
 k1ra-sharedpref = { module = "net.k1ra.shared_pref_kmm:SharedPrefKmm", version.ref = "k1ra-sharedpref" }
+k1ra-eizo = { module = "net.k1ra.eizo:Eizo", version.ref = "eizo" }
 sqldelight-driver-android = { module = "me.gulya.sqldelight:android-driver", version.ref = "sqlDelight" }
 sqldelight-driver-jdbc = { module = "me.gulya.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
 sqldelight-driver-web = { module = "me.gulya.sqldelight:web-worker-driver", version.ref = "sqlDelight" }
@@ -63,18 +80,18 @@ exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "e
 exposed-kotlin-datetime = { module = "org.jetbrains.exposed:exposed-kotlin-datetime", version.ref = "exposed" }
 exposed-json = { module = "org.jetbrains.exposed:exposed-json", version.ref = "exposed" }
 argon2 = { module = "de.mkammerer:argon2-jvm", version.ref = "argon2" }
-ktor-client-core-wasm = { module = "io.ktor:ktor-client-core-wasm-js", version.ref = "ktor" }
-ktor-client-wasm-js = { module = "io.ktor:ktor-http-wasm-js", version.ref = "ktor"}
-ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor"}
-ktor-client-serialization = { module = "io.ktor:ktor-serialization", version.ref = "ktor"}
-ktor-client-serialization-kotlinx = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor"}
-ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor"}
-precompose-core = { module = "moe.tlaster:precompose", version.ref = "precompose" }
-precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
-precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
-koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin"}
+koin-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel", version.ref = "koin"}
 oshi-core = { module = "com.github.oshi:oshi-core", version.ref = "oshi" }
 kotlinx-browser = { module = "org.jetbrains.kotlinx:kotlinx-browser-wasm-js", version.ref = "browser" }
+androidx-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewmodel"}
+androidx-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigation"}
+maxmind = { module = "com.maxmind.geoip2:geoip2", version.ref = "maxmind" }
+mapcompose = { module = "ovh.plrapps:mapcompose-mp", version.ref = "mapCompose" }
+qrose = { module = "io.github.alexzhirkevich:qrose", version.ref = "qrose" }
+k1ra-pickncrop = { module = "net.k1ra.kotlin_image_pick_n_crop:KotlinImagePickNCrop", version.ref = "pickncrop" }
+aws-s3 = { module = "aws.sdk.kotlin:s3", version.ref = "aws" }
+ldaptive = { module = "org.ldaptive:ldaptive", version.ref = "ldaptive" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

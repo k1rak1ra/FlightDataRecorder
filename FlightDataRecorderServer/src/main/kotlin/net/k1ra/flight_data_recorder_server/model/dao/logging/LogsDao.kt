@@ -2,6 +2,7 @@ package net.k1ra.flight_data_recorder_server.model.dao.logging
 
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
+import net.k1ra.flight_data_recorder.model.projects.LogLine
 import net.k1ra.flight_data_recorder_server.model.dao.projects.ProjectsDao
 import net.k1ra.flight_data_recorder_server.model.dao.projects.SharePermissionsDao
 import org.jetbrains.exposed.dao.Entity
@@ -20,6 +21,8 @@ class LogsDao(id: EntityID<Int>) : Entity<Int>(id) {
         val project = reference("project", ProjectsDao.ProjectsTable)
         val datetime = datetime("datetime")
         val logLine = jsonb("logLine", {jsonObject ->  jsonObject.toString()}, {s: String ->  Json.parseToJsonElement(s) as JsonObject})
+        val ipAddr = text("ipAddr")
+        val deviceId = varchar("deviceId", 36)
 
         fun initDb() {
             transaction {
@@ -34,4 +37,14 @@ class LogsDao(id: EntityID<Int>) : Entity<Int>(id) {
     var project by ProjectsDao referencedOn LogsTable.project
     var datetime by LogsTable.datetime
     var logLine by LogsTable.logLine
+    var ipAddr by LogsTable.ipAddr
+    var deviceId by LogsTable.deviceId
+}
+
+fun LogsDao.toLogLine() : LogLine {
+    return LogLine(
+        datetime,
+        logLine,
+        deviceId
+    )
 }

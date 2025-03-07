@@ -1,9 +1,97 @@
 <resources>
-    <string name="logging_in">Logging in...</string>
-    <string name="loading_dashboard">Loading dashboard</string>
+    <string name="retry">Retry</string>
+    <string name="new_project">New project</string>
+    <string name="project_name">Project name</string>
+    <string name="create">Create</string>
+    <string name="project_already_exists">A project with this name already exists!</string>
+    <string name="connect_fail">Failed to connect to the server</string>
+    <string name="project_created">Project created!</string>
+    <string name="your_projects">Your projects</string>
+    <string name="owned_by_you">Owned by you</string>
+    <string name="owned_by">Owned by %1$s</string>
 
-    <string name="make_login">Make login request</string>
-    <string name="make_dashboard">Make dashboard request</string>
+    <string name="incorrect_credentials">Incorrect credentials</string>
+    <string name="user_exists">A user with this email already exists. Please login normally</string>
+    <string name="app_name">FlightDataRecorder</string>
+    <string name="username_or_email">Username or email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 
-    <string name="generic_error">Error %1$d with message %2$s</string>
+    <string name="users_live">%1$d users live</string>
+    <string name="log_query">Log query</string>
+    <string name="entries">%1$d entries</string>
+    <string name="no_entries_found">No entries found</string>
+    <string name="no_eligible_users">No eligible users found</string>
+    <string name="project_api_key">Project API key:</string>
+    <string name="owner">Owner:</string>
+    <string name="you">You</string>
+    <string name="change_owner">Change owner</string>
+    <string name="project_shared_with">Project shared with:</string>
+    <string name="picture">Picture</string>
+    <string name="name">Name</string>
+    <string name="level">Level</string>
+    <string name="readonly">Read-only</string>
+    <string name="write">Write</string>
+    <string name="cancel_share">Cancel share</string>
+    <string name="add_share">Add share</string>
+
+    <string name="dashboard">Dashboard</string>
+    <string name="settings">Settings</string>
+    <string name="insufficientPermissions">Insufficient permissions</string>
+    <string name="syntaxSelect">Syntax error: Missing SELECT</string>
+    <string name="syntaxNoFrom">Syntax error: Missing FROM</string>
+    <string name="syntaxFromAfterWhere">Syntax error: WHERE should be after FROM</string>
+    <string name="syntaxWhereMissing">Syntax error: No conditions found after WHERE</string>
+    <string name="syntaxTreeBranchZero">Error processing query: Unexpected empty tree branch</string>
+    <string name="syntaxTreeUnexpectedType">Error processing query: Invalid data in tree</string>
+    <string name="syntaxInvalidOp">Syntax error: Invalid operation for data type</string>
+    <string name="syntaxBracketsError">Syntax error: Mismatched brackets</string>
+    <string name="syntaxInvalidCompareForString">Syntax error: Invalid comparison operation for String</string>
+    <string name="syntaxInvalidCompareForBool">Syntax error: Invalid comparison operation for Boolean</string>
+    <string name="syntaxInvalidCompareForNumber">Syntax error: Invalid comparison operation for Number</string>
+    <string name="syntaxGeneric">Something went wrong while processing the query</string>
+
+    <string name="account">Account</string>
+    <string name="profile">Profile</string>
+    <string name="personal_information">Personal information</string>
+    <string name="authentication">Authentication</string>
+    <string name="manage_users">Manage users</string>
+    <string name="log_out">Log out</string>
+
+    <string name="add_a_user">Add a user</string>
+    <string name="select_profile_picture">Select a new picture</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="user_is_admin">User is admin</string>
+    <string name="submit">Submit</string>
+    <string name="emailNotUnique">Someone else is already using that email</string>
+    <string name="usernameNotUnique">Someone else is already using that username</string>
+    <string name="user_created">User created!</string>
+
+    <string name="notFound">This user does not exist</string>
+    <string name="uploadFail">Failed to upload the profile picture</string>
+    <string name="change_password">Change password</string>
+    <string name="user_updated">User updated!</string>
+    <string name="password_updated">Password updated!</string>
+
+    <string name="current_password">Current password</string>
+    <string name="new_password">New password</string>
+    <string name="confirm_new_password">Confirm new password</string>
+    <string name="password_do_not_match">Passwords do not match</string>
+    <string name="old_password_incorrect">Your old password is incorrect</string>
+    <string name="password_too_short">Password should be 8 characters or longer</string>
+    <string name="save">Save</string>
+    <string name="updated_successfully">Updated successfully!</string>
+
+    <string name="blank">You can't leave anything blank!</string>
+    <string name="your_personal_information">Your personal information</string>
+
+    <string name="your_profile">Your profile</string>
+    <string name="fileSize">Max file size is 6MB</string>
+
+    <string name="role">Role</string>
+    <string name="uid">User ID</string>
+    <string name="native">Native</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

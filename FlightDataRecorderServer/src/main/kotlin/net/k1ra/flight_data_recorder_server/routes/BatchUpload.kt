@@ -2,6 +2,9 @@ package net.k1ra.flight_data_recorder_server.routes
 
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
+import io.ktor.server.plugins.origin
+import io.ktor.server.plugins.ratelimit.RateLimitName
+import io.ktor.server.plugins.ratelimit.rateLimit
 import io.ktor.server.request.header
 import io.ktor.server.request.receiveText
 import io.ktor.server.response.respond
@@ -15,15 +18,17 @@ import net.k1ra.flight_data_recorder_server.viewmodel.projects.ProjectsViewModel
 
 fun Route.batchUpload() {
     route("/client/batchupload") {
-        post {
-            val project = ProjectsViewModel.getProject(call.request.header("Authorization")?.replace("Bearer ","") ?: "")
+        rateLimit(RateLimitName("regular")) {
+            post {
+                val project = ProjectsViewModel.getProject(call.request.header("Authorization")?.replace("Bearer ", "") ?: "")
 
-            if (project != null) {
-                LogsViewModel.insertBatch(project, Json.parseToJsonElement(call.receiveText()) as JsonArray)
+                if (project != null) {
+                    LogsViewModel.insertBatch(project, Json.parseToJsonElement(call.receiveText()) as JsonArray, call.request.origin.remoteAddress)
 
-                call.respond(HttpStatusCode.OK)
-            } else {
-                call.respond(HttpStatusCode.NotFound)
+                    call.respond(HttpStatusCode.OK)
+                } else {
+                    call.respond(HttpStatusCode.NotFound)
+                }
             }
         }
     }

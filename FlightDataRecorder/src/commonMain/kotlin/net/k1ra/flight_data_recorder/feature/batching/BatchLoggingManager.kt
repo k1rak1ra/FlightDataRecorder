@@ -23,6 +23,8 @@ import net.k1ra.flight_data_recorder.feature.cryptography.Cryptography
 import net.k1ra.flight_data_recorder.feature.database.DatabaseFactory
 import net.k1ra.flight_data_recorder.feature.deviceinfo.DeviceInfoGetter
 import net.k1ra.flight_data_recorder.feature.logging.LogLevels
+import net.k1ra.flight_data_recorder.feature.model.FlightDataRecorderMetadata
+import net.k1ra.flight_data_recorder.feature.model.toJsonPrimitive
 import net.k1ra.flightdatarecorder.database.BatchLogStoreQueries
 import net.k1ra.hoodies_network_kmm.HoodiesNetworkClient
 import net.k1ra.hoodies_network_kmm.result.Success
@@ -74,8 +76,7 @@ internal class BatchLoggingManager(val appKey: String) {
         }
     }
 
-    fun consumeLog(tag: String, message: String, level: LogLevels, additionalMetadata: Map<String, String>) = CoroutineScope(
-        IODispatcher).launch {
+    fun consumeLog(tag: String, message: String, level: LogLevels, additionalMetadata: Map<String, FlightDataRecorderMetadata>) = CoroutineScope(IODispatcher).launch {
         //Convert the log line and all additional metadata to JSON
         val logJson = convertLogToJsonString(tag, message, level, additionalMetadata)
 
@@ -95,16 +96,16 @@ internal class BatchLoggingManager(val appKey: String) {
             watchdogJob.start()
     }
 
-    private suspend fun convertLogToJsonString(tag: String, message: String, level: LogLevels, additionalMetadata: Map<String, String>) : String {
+    private suspend fun convertLogToJsonString(tag: String, message: String, level: LogLevels, additionalMetadata: Map<String, FlightDataRecorderMetadata>) : String {
         val elements = mutableMapOf<String, JsonElement>()
 
-        elements.putAll(FlightDataRecorderConfig.additionalMetadata.mapValues { JsonPrimitive(it.value) })
-        elements.putAll(additionalMetadata.mapValues { JsonPrimitive(it.value) })
+        elements.putAll(FlightDataRecorderConfig.additionalMetadata.mapValues { it.value.toJsonPrimitive() })
+        elements.putAll(additionalMetadata.mapValues { it.value.toJsonPrimitive() })
 
         elements["Tag"] = JsonPrimitive(tag)
         elements["Message"] = JsonPrimitive(message)
         elements["LogLevel"] = JsonPrimitive(level.name)
-        elements["DateTime"] = JsonPrimitive(Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).toInstant(TimeZone.UTC).toEpochMilliseconds())
+        elements["DateTime"] = JsonPrimitive(Clock.System.now().toEpochMilliseconds())
         elements["DeviceID"] = JsonPrimitive(getUniqueDeviceId())
         elements["Language"] = JsonPrimitive(Locale.current.language)
         elements["Region"] = JsonPrimitive(Locale.current.region)
