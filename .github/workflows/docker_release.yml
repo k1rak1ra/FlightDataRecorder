@@ -1,4 +1,4 @@
-name: Build and Release
+name: Build and Release (Backend + Web UI for Docker)
 
 on:
   release:
