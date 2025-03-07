@@ -31,7 +31,6 @@ jobs:
 
       - name: Build docker image
         run: ./gradlew FlightDataRecorderServer:buildImage
-          docker load < FlightDataRecorderServer/build/jib-image.tar
         env:
           releaseName: ${{ github.event.release.name }}
 
