@@ -30,13 +30,16 @@ jobs:
           releaseName: ${{ github.event.release.name }}
 
       - name: Build docker image
-        run:
-          ./gradlew FlightDataRecorderServer:buildImage
+        run: ./gradlew FlightDataRecorderServer:buildImage
           docker load < FlightDataRecorderServer/build/jib-image.tar
         env:
           releaseName: ${{ github.event.release.name }}
 
+      - name: Load docker image
+        run: docker load < FlightDataRecorderServer/build/jib-image.tar
+
+      - name: Tag docker image
+        run: docker tag flightdatarecorderserver:${{ github.event.release.name }} k1rak1ra/packages/flightdatarecorderserver:${{ github.event.release.name }}
+
       - name: Publish to Docker hub
-        run:
-          docker tag flightdatarecorderserver:${{ github.event.release.name }} k1rak1ra/packages/flightdatarecorderserver:${{ github.event.release.name }}
-          docker push k1rak1ra/packages/flightdatarecorderserver:${{ github.event.release.name }}
+        run: docker push k1rak1ra/packages/flightdatarecorderserver:${{ github.event.release.name }}
