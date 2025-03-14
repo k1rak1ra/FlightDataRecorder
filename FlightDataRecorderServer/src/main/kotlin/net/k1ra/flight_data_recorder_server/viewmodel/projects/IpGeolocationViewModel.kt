@@ -14,17 +14,27 @@ object IpGeolocationViewModel {
     fun save(ipStr: String) : IpGeolocationData = transaction {
         val data = getFromDb(ipStr)
         if (data == null) {
-            val data = doLookup(ipStr)
-            val dbRecord = IpGeolocationDao.new {
-                ipAddr = ipStr
-                city = data.city
-                state = data.state
-                country = data.country
-                latitude = data.latitude
-                longitude = data.longitude
+            try {
+                val data = doLookup(ipStr)
+                val dbRecord = IpGeolocationDao.new {
+                    ipAddr = ipStr
+                    city = data.city
+                    state = data.state
+                    country = data.country
+                    latitude = data.latitude
+                    longitude = data.longitude
+                }
+                return@transaction dbRecord.toIpGeolocationData()
+            } catch (e: Exception) {
+                return@transaction IpGeolocationData(
+                    ipStr,
+                    "ERROR",
+                    "ERROR",
+                    "ERROR",
+                    "0",
+                    "0"
+                )
             }
-
-            return@transaction dbRecord.toIpGeolocationData()
         } else {
             return@transaction data
         }
