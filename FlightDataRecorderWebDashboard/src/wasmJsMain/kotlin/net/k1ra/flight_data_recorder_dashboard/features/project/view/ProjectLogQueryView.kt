@@ -69,9 +69,16 @@ fun ProjectLogQueryView(viewModel: ProjectViewModel, data: ProjectData) {
             if (queryList.first() == "count(*)") {
                 Text(stringResource(Res.string.entries, data.queriedLogLines.size), fontSize = secondaryFontSize)
             } else {
-                val keys = data.queriedLogLines.first().contents.keys.toMutableList()
+                val listSize = data.queriedLogLines.size
 
-                data.queriedLogLines.forEach { logLine ->
+                val subList = if (listSize > 200)
+                    data.queriedLogLines.subList(0, 200)
+                else
+                    data.queriedLogLines
+
+                val keys = subList.first().contents.keys.toMutableList()
+
+                subList.forEach { logLine ->
                     logLine.contents.keys.forEach { key ->
                         if (!keys.contains(key))
                             keys.add(key)
@@ -95,7 +102,7 @@ fun ProjectLogQueryView(viewModel: ProjectViewModel, data: ProjectData) {
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    data.queriedLogLines.map { logLine ->
+                    subList.map { logLine ->
                         row {
                             filteredKeys.map { key ->
                                 cell {
