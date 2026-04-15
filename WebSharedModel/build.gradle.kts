@@ -7,7 +7,7 @@ plugins {
 
 kotlin {
     wasmJs {
-        moduleName = "FlightDataRecorderSharedModel"
+        outputModuleName = "FlightDataRecorderSharedModel"
         browser {
             commonWebpackConfig {
             }

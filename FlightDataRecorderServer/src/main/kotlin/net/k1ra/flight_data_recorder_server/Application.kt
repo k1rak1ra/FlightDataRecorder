@@ -23,7 +23,6 @@ import net.k1ra.flight_data_recorder_server.model.dao.projects.SharePermissionsD
 import net.k1ra.flight_data_recorder_server.routes.batchUpload
 import net.k1ra.flight_data_recorder_server.routes.dashboard
 import net.k1ra.flight_data_recorder_server.routes.login
-import org.jetbrains.exposed.sql.Database
 import io.ktor.server.plugins.cors.routing.CORS
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -38,6 +37,7 @@ import net.k1ra.flight_data_recorder_server.routes.manage_users
 import net.k1ra.flight_data_recorder_server.routes.project
 import net.k1ra.flight_data_recorder_server.routes.user_settings
 import net.k1ra.flight_data_recorder_server.viewmodel.housekeeping.ServerInstanceManagementViewModel
+import org.jetbrains.exposed.v1.jdbc.Database
 import org.slf4j.event.Level
 import java.net.URI
 import java.time.Duration

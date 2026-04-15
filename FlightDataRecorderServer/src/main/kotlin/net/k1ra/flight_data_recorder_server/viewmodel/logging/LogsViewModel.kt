@@ -14,7 +14,7 @@ import net.k1ra.flight_data_recorder.feature.logging.Log
 import net.k1ra.flight_data_recorder_server.model.dao.logging.LogsDao
 import net.k1ra.flight_data_recorder_server.model.dao.projects.ProjectsDao
 import net.k1ra.flight_data_recorder_server.viewmodel.projects.IpGeolocationViewModel
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 object LogsViewModel {
     fun insertBatch(targetProject: ProjectsDao, logs: JsonArray, ipStr: String) {

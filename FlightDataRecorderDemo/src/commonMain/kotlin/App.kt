@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import net.k1ra.flight_data_recorder.feature.config.FlightDataRecorderConfig
 import net.k1ra.flight_data_recorder.feature.logging.Log
+import net.k1ra.flight_data_recorder.feature.model.FlightDataRecorderMetadata
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -21,7 +22,14 @@ fun App() {
     MaterialTheme {
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Button(onClick = {
-                Log.d("TestTag", "TestMessage", mapOf("a1" to "a1val", "a2" to "a2val"))
+                Log.d(
+                    "TestTag",
+                    "TestMessage",
+                    mapOf(
+                        "a1" to FlightDataRecorderMetadata.String("a1val"),
+                        "a2" to FlightDataRecorderMetadata.String("a2val")
+                    )
+                )
             }) {
                 Text("Log")
             }

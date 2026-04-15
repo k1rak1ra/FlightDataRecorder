@@ -2,7 +2,6 @@ package net.k1ra.flight_data_recorder_server.viewmodel.projects
 
 import io.ktor.http.Headers
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toKotlinInstant
 import kotlinx.datetime.toLocalDateTime
 import net.k1ra.flight_data_recorder.model.projects.DatabaseQueryComparison
 import net.k1ra.flight_data_recorder.model.projects.ModifyShareRequest
@@ -19,22 +18,24 @@ import net.k1ra.flight_data_recorder_server.model.dao.projects.SharePermissionsD
 import net.k1ra.flight_data_recorder_server.model.dao.projects.toShareData
 import net.k1ra.flight_data_recorder_server.utils.Constants
 import net.k1ra.flight_data_recorder_server.viewmodel.authentication.UserViewModel
-import org.jetbrains.exposed.sql.Op
-import org.jetbrains.exposed.sql.Query
-import org.jetbrains.exposed.sql.SortOrder
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.greater
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.greaterEq
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.less
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.lessEq
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.like
-import org.jetbrains.exposed.sql.and
-import org.jetbrains.exposed.sql.json.extract
-import org.jetbrains.exposed.sql.or
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.core.Op
+import org.jetbrains.exposed.v1.core.SortOrder
+import org.jetbrains.exposed.v1.core.and
+import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.core.greater
+import org.jetbrains.exposed.v1.core.greaterEq
+import org.jetbrains.exposed.v1.core.less
+import org.jetbrains.exposed.v1.core.lessEq
+import org.jetbrains.exposed.v1.core.like
+import org.jetbrains.exposed.v1.core.or
+import org.jetbrains.exposed.v1.jdbc.Query
+import org.jetbrains.exposed.v1.jdbc.select
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
+import org.jetbrains.exposed.v1.json.extract
 import java.time.Clock
 import java.util.UUID
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.toKotlinInstant
 
 
 object ProjectsViewModel {

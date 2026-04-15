@@ -6,13 +6,13 @@ import net.k1ra.flight_data_recorder.model.authentication.UserRole
 import net.k1ra.flight_data_recorder_server.model.dao.projects.ProjectsDao
 import net.k1ra.flight_data_recorder_server.model.dao.projects.SharePermissionsDao
 import net.k1ra.flight_data_recorder_server.viewmodel.authentication.PasswordViewModel
-import org.jetbrains.exposed.dao.Entity
-import org.jetbrains.exposed.dao.EntityClass
-import org.jetbrains.exposed.dao.id.EntityID
-import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.exists
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.core.dao.id.EntityID
+import org.jetbrains.exposed.v1.core.dao.id.IntIdTable
+import org.jetbrains.exposed.v1.dao.Entity
+import org.jetbrains.exposed.v1.dao.EntityClass
+import org.jetbrains.exposed.v1.jdbc.SchemaUtils
+import org.jetbrains.exposed.v1.jdbc.exists
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 class UsersDao(id: EntityID<Int>) : Entity<Int>(id) {
     object UsersTable: IntIdTable() {

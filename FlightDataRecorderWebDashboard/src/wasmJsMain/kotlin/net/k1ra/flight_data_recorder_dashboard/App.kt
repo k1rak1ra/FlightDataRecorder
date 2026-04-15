@@ -5,6 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import androidx.savedstate.read
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -89,7 +91,7 @@ fun App() {
                 }
 
                 composable("project/{projectId}") { navBackStackEntry ->
-                    ProjectView(navController, navBackStackEntry.arguments?.getString("projectId")!!)
+                    ProjectView(navController, navBackStackEntry.arguments?.read { getString("projectId") }!!)
                 }
             }
         }

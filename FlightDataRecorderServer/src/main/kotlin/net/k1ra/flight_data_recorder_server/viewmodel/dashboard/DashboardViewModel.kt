@@ -6,7 +6,7 @@ import net.k1ra.flight_data_recorder.model.projects.SimpleProjectData
 import net.k1ra.flight_data_recorder_server.model.dao.authentication.toClientUserData
 import net.k1ra.flight_data_recorder_server.model.dao.projects.toSimpleProjectData
 import net.k1ra.flight_data_recorder_server.viewmodel.authentication.UserViewModel
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 class DashboardViewModel(headers: Headers) {
     private val session = UserViewModel.sessionFromHeader(headers)

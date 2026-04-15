@@ -8,7 +8,7 @@ import net.k1ra.flight_data_recorder_server.utils.Constants
 import net.k1ra.flight_data_recorder_server.viewmodel.authentication.PasswordViewModel
 import net.k1ra.flight_data_recorder_server.viewmodel.authentication.UserViewModel
 import net.k1ra.flight_data_recorder_server.viewmodel.aws.S3ViewModel
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 import java.util.Base64
 
 class UserSettingsViewModel(headers: Headers) {

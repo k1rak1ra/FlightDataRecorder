@@ -1,13 +1,14 @@
 package net.k1ra.flight_data_recorder_server.viewmodel.housekeeping
 
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toKotlinInstant
 import kotlinx.datetime.toLocalDateTime
 import net.k1ra.flight_data_recorder_server.model.dao.authentication.SessionsDao
 import net.k1ra.flight_data_recorder_server.model.dao.housekeeping.LiveSessionDao
 import net.k1ra.flight_data_recorder_server.model.dao.housekeeping.ServerInstanceDao
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.core.less
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 import java.time.Clock
+import kotlin.time.toKotlinInstant
 
 object ServerInstanceManagementViewModel {
     var instanceDao: ServerInstanceDao? = null

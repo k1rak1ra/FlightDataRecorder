@@ -5,18 +5,14 @@ import app.cash.sqldelight.async.coroutines.awaitAsList
 import app.cash.sqldelight.async.coroutines.awaitAsOne
 import com.benasher44.uuid.uuid4
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toInstant
-import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
+import net.k1ra.flight_data_recorder.database.BatchLogStoreQueries
 import net.k1ra.flight_data_recorder.feature.config.FlightDataRecorderConfig
 import net.k1ra.flight_data_recorder.feature.cryptography.CipherMode
 import net.k1ra.flight_data_recorder.feature.cryptography.Cryptography
@@ -25,11 +21,11 @@ import net.k1ra.flight_data_recorder.feature.deviceinfo.DeviceInfoGetter
 import net.k1ra.flight_data_recorder.feature.logging.LogLevels
 import net.k1ra.flight_data_recorder.feature.model.FlightDataRecorderMetadata
 import net.k1ra.flight_data_recorder.feature.model.toJsonPrimitive
-import net.k1ra.flightdatarecorder.database.BatchLogStoreQueries
 import net.k1ra.hoodies_network_kmm.HoodiesNetworkClient
 import net.k1ra.hoodies_network_kmm.result.Success
 import net.k1ra.sharedprefkmm.SharedPreferences
 import net.k1ra.sharedprefkmm.util.IODispatcher
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.seconds
 
 internal class BatchLoggingManager(val appKey: String) {

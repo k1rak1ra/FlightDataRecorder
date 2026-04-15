@@ -1,8 +1,8 @@
 package net.k1ra.flight_data_recorder.feature.logging
 
-import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import kotlin.time.Clock
 
 internal actual object LogPrinter {
     actual fun printLog(

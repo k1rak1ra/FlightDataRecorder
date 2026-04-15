@@ -4,11 +4,9 @@ import net.k1ra.flight_data_recorder.model.authentication.ClientUserData
 import net.k1ra.flight_data_recorder.model.authentication.LoginRequest
 import net.k1ra.flight_data_recorder_server.model.dao.authentication.SessionsDao
 import net.k1ra.flight_data_recorder_server.model.dao.authentication.UsersDao
-import org.jetbrains.exposed.sql.or
 import java.util.UUID
 import io.ktor.http.*
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toKotlinInstant
 import kotlinx.datetime.toLocalDateTime
 import net.k1ra.flight_data_recorder.model.authentication.SimpleUserData
 import net.k1ra.flight_data_recorder.model.authentication.UserRole
@@ -17,8 +15,11 @@ import net.k1ra.flight_data_recorder_server.model.dao.authentication.toSimpleUse
 import net.k1ra.flight_data_recorder_server.model.dao.housekeeping.LiveSessionDao
 import net.k1ra.flight_data_recorder_server.viewmodel.housekeeping.ServerInstanceManagementViewModel
 import net.k1ra.flight_data_recorder_server.viewmodel.projects.IpGeolocationViewModel
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.core.or
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 import java.time.Clock
+import kotlin.time.toKotlinInstant
 
 object UserViewModel {
     fun login(request: LoginRequest) : ClientUserData? = transaction {

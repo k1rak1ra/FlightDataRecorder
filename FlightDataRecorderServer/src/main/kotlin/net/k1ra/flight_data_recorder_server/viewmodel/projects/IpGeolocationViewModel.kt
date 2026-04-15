@@ -5,7 +5,8 @@ import net.k1ra.flight_data_recorder.model.projects.IpGeolocationData
 import net.k1ra.flight_data_recorder_server.model.dao.projects.IpGeolocationDao
 import net.k1ra.flight_data_recorder_server.model.dao.projects.toIpGeolocationData
 import net.k1ra.flight_data_recorder_server.utils.Constants
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 import java.net.InetAddress
 
 object IpGeolocationViewModel {
@@ -56,11 +57,11 @@ object IpGeolocationViewModel {
 
         return IpGeolocationData(
             ipStr,
-            data.city.name,
-            data.leastSpecificSubdivision.name,
-            data.country.name,
-            data.location.latitude.toString(),
-            data.location.longitude.toString()
+            data.city().name(),
+            data.leastSpecificSubdivision().name(),
+            data.country().name(),
+            data.location().latitude().toString(),
+            data.location().longitude().toString()
         )
     }
 

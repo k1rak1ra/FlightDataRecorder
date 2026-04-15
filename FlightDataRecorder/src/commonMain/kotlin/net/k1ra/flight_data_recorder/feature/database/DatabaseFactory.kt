@@ -1,6 +1,7 @@
 package net.k1ra.flight_data_recorder.feature.database
 
-import net.k1ra.flightdatarecorder.database.BatchLogStoreQueries
+import net.k1ra.flight_data_recorder.database.BatchLogStoreQueries
+
 
 internal object DatabaseFactory {
     suspend fun provideDatabase(collection: String) : BatchLogStoreQueries {
