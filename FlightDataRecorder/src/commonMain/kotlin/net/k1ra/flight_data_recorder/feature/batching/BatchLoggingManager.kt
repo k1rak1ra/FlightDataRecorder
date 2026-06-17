@@ -50,21 +50,26 @@ internal class BatchLoggingManager(val appKey: String) {
     //Start log line count watchdog
     private val watchdogJob = CoroutineScope(IODispatcher).launch {
         while (true) {
-            if (getDb().countAll().awaitAsOne() > FlightDataRecorderConfig.batchLimit) {
-                //Fetch stored logs and get ID of last line
-                val allLogs = getDb().getAll().awaitAsList()
-                val maxId = allLogs.last().id
+            try {
+                if (getDb().countAll().awaitAsOne() > FlightDataRecorderConfig.batchLimit) {
+                    //Fetch stored logs and get ID of last line
+                    val allLogs = getDb().getAll().awaitAsList()
+                    val maxId = allLogs.last().id
 
-                //Decrypt all logs and convert to JsonArray
-                val jsonArr = JsonArray(allLogs.map { Json.parseToJsonElement(crypto.runAes(it.data_, it.iv, CipherMode.DECRYPT).decodeToString()) })
+                    //Decrypt all logs and convert to JsonArray
+                    val jsonArr = JsonArray(allLogs.map { Json.parseToJsonElement(crypto.runAes(it.data_, it.iv, CipherMode.DECRYPT).decodeToString()) })
 
-                var logServer = FlightDataRecorderConfig.logServer ?: ""
-                if (logServer.last() == '/')
-                    logServer = logServer.substring(0, logServer.length-1)
+                    var logServer = FlightDataRecorderConfig.logServer ?: ""
+                    if (logServer.last() == '/')
+                        logServer = logServer.substring(0, logServer.length - 1)
 
-                //Upload to server and delete from DB if uploaded successfully
-                if (httpClient.post<Unit, ByteArray>("$logServer/client/batchupload", jsonArr.toString().encodeToByteArray()) is Success)
-                    getDb().deleteBeforeId(maxId)
+                    //Upload to server and delete from DB if uploaded successfully
+                    if (httpClient.post<Unit, ByteArray>("$logServer/client/batchupload", jsonArr.toString().encodeToByteArray()) is Success)
+                        getDb().deleteBeforeId(maxId)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                getDb().deleteBeforeId(Long.MAX_VALUE)
             }
 
             //Wait a while before repeating the loop
