@@ -7,6 +7,23 @@ $dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderC
 $dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderConfig/batchLimit/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/-flight-data-recorder-config/batch-limit.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderConfig/logLevel/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/-flight-data-recorder-config/log-level.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.config/FlightDataRecorderConfig/logServer/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.config/-flight-data-recorder-config/log-server.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database////PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogDao///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-dao/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogDao/countAll/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-dao/count-all.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogDao/deleteBeforeId/#kotlin.Long/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-dao/delete-before-id.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogDao/getAll/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-dao/get-all.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogDao/getByIv/#kotlin.ByteArray/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-dao/get-by-iv.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogDao/insert/#net.k1ra.flight_data_recorder.feature.database.LogEntity/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-dao/insert.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogDatabase///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-database/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogDatabase/LogDatabase/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-database/-log-database.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogDatabase/getDao/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-database/get-dao.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogDatabaseConstructor///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-database-constructor/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogDatabaseConstructor/initialize/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-database-constructor/initialize.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogEntity///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-entity/index.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogEntity/LogEntity/#kotlin.Long#kotlin.ByteArray#kotlin.ByteArray/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-entity/-log-entity.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogEntity/data/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-entity/data.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogEntity/id/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-entity/id.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.database/LogEntity/iv/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.database/-log-entity/iv.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo////PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/index.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/index.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.deviceinfo/DeviceInfoGetter/getAvailableMemoryMb/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.deviceinfo/-device-info-getter/get-available-memory-mb.html
@@ -29,9 +46,9 @@ $dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels.VERBOSE/
 $dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels.WARNING///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/-w-a-r-n-i-n-g/index.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels.WTF///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/-w-t-f/index.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/index.html
-$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels/entries/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/entries.html
-$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels/valueOf/#kotlin.String/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/value-of.html
-$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels/values/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/values.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels/entries/#/companion/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/entries.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels/valueOf/#kotlin.String/companion/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/value-of.html
+$dokka.location:net.k1ra.flight_data_recorder.feature.logging/LogLevels/values/#/companion/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.logging/-log-levels/values.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.model////PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.model/index.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.model//toJsonPrimitive/net.k1ra.flight_data_recorder.feature.model.FlightDataRecorderMetadata#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.model/to-json-primitive.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.model/FlightDataRecorderMetadata.Boolean///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.model/-flight-data-recorder-metadata/-boolean/index.html
@@ -51,6 +68,7 @@ $dokka.location:net.k1ra.flight_data_recorder.feature.model/FlightDataRecorderMe
 $dokka.location:net.k1ra.flight_data_recorder.feature.model/FlightDataRecorderMetadata.String/string/#/PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.model/-flight-data-recorder-metadata/-string/string.html
 $dokka.location:net.k1ra.flight_data_recorder.feature.model/FlightDataRecorderMetadata///PointingToDeclaration/-flight-data-recorder/net.k1ra.flight_data_recorder.feature.model/-flight-data-recorder-metadata/index.html
 net.k1ra.flight_data_recorder.feature.config
+net.k1ra.flight_data_recorder.feature.database
 net.k1ra.flight_data_recorder.feature.deviceinfo
 net.k1ra.flight_data_recorder.feature.logging
 net.k1ra.flight_data_recorder.feature.model
