@@ -35,6 +35,7 @@ dependencyResolutionManagement {
 
 include(":FlightDataRecorder")
 include(":FlightDataRecorderDemo")
+include(":FlightDataRecorderDemoAndroid")
 include(":FlightDataRecorderServer")
 include(":WebSharedModel")
 include(":FlightDataRecorderWebDashboard")

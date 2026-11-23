@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.toRoute
 import androidx.savedstate.read
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,74 +25,74 @@ import net.k1ra.flight_data_recorder_dashboard.features.settings.view.SettingsUs
 import net.k1ra.flight_data_recorder_dashboard.theme.AppTypography
 import net.k1ra.flight_data_recorder_dashboard.theme.darkScheme
 import org.koin.compose.KoinApplication
+import org.koin.dsl.koinConfiguration
 
 @Composable
 fun App() {
-    KoinApplication({
-        //Koin configuration
+    KoinApplication(configuration = koinConfiguration({
         modules(
             ViewModelProvider,
             UserDataProvider,
             NetworkProvider
         )
-    }) {
-        //Main app Composable
-        MaterialTheme(
-            colorScheme = darkScheme,
-            typography = AppTypography,
-        ) {
-            val navController = rememberNavController()
+}), content = {
+            //Main app Composable
+            MaterialTheme(
+                colorScheme = darkScheme,
+                typography = AppTypography,
+            ) {
+                val navController = rememberNavController()
 
-            forceLogoutHook = {
-                CoroutineScope(Dispatchers.Main).launch {
+                forceLogoutHook = {
+                    CoroutineScope(Dispatchers.Main).launch {
 
-                    if (navController.currentDestination?.route != "login") {
-                        navController.popBackStack(route = "dashboard", inclusive = true)
-                        navController.navigate("login")
+                        if (navController.currentDestination?.route != "login") {
+                            navController.popBackStack(route = "dashboard", inclusive = true)
+                            navController.navigate("login")
+                        }
+                    }
+                }
+
+                navController.addOnDestinationChangedListener { _, dest, _ ->
+                    Log.d("NavController", "Navigated to ${dest.route}")
+                }
+
+                NavHost(
+                    navController = navController,
+                    startDestination = "login"
+                ) {
+                    composable("login") {
+                        LoginView(navController)
+                    }
+
+                    composable("dashboard") {
+                        DashboardView(navController)
+                    }
+
+                    composable("settings_home") {
+                        SettingsHomeView(navController)
+                    }
+
+                    composable("settings_profile") {
+                        SettingsProfileView(navController)
+                    }
+
+                    composable("settings_personal_info") {
+                        SettingsPersonalInfoView(navController)
+                    }
+
+                    composable("settings_password") {
+                        SettingsPasswordView(navController)
+                    }
+
+                    composable("settings_user_management") {
+                        SettingsUserManagementView(navController)
+                    }
+
+                    composable("project/{projectId}") { navBackStackEntry ->
+                        ProjectView(navController, navBackStackEntry.arguments?.read { getString("projectId") }!!)
                     }
                 }
             }
-
-            navController.addOnDestinationChangedListener { _, dest, _ ->
-                Log.d("NavController", "Navigated to ${dest.route}")
-            }
-
-            NavHost(
-                navController = navController,
-                startDestination = "login"
-            ) {
-                composable("login") {
-                    LoginView(navController)
-                }
-
-                composable("dashboard") {
-                    DashboardView(navController)
-                }
-
-                composable("settings_home") {
-                    SettingsHomeView(navController)
-                }
-
-                composable("settings_profile") {
-                    SettingsProfileView(navController)
-                }
-
-                composable("settings_personal_info") {
-                    SettingsPersonalInfoView(navController)
-                }
-
-                composable("settings_password") {
-                    SettingsPasswordView(navController)
-                }
-
-                composable("settings_user_management") {
-                    SettingsUserManagementView(navController)
-                }
-
-                composable("project/{projectId}") { navBackStackEntry ->
-                    ProjectView(navController, navBackStackEntry.arguments?.read { getString("projectId") }!!)
-                }
-            }
-        }
-    }
+        })
 }

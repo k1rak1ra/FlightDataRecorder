@@ -1,37 +1,40 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.sqlDelight)
     id("maven-publish")
     alias(libs.plugins.kover)
     alias(libs.plugins.dokka)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.room)
+    alias(libs.plugins.ksp)
 }
 
 group = "net.k1ra.flight_data_recorder"
 version = System.getenv("releaseName") ?: "999999.999999.999999"
 
-sqldelight {
-    databases {
-        create("FlightDataRecorderDatabase") {
-            packageName.set("net.k1ra.flight_data_recorder.database")
-            generateAsync.set(true)
-        }
-    }
-    linkSqlite = true
-}
 
 kotlin {
-    androidTarget {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+    android {
+        namespace = "net.k1ra.flight_data_recorder"
+        compileSdk {
+            //noinspection WrongGradleMethod
+            val (major, minor) = libs.versions.android.compileSdk.get().split(".").map { it.toInt() } + listOf(0)
+            version = release(major) { minorApiLevel = minor }
         }
-        publishLibraryVariants("release", "debug")
+        minSdk = libs.versions.android.minSdk.get().toInt()
+
+        androidResources.enable = true
+
+        withHostTest {
+            enableCoverage = true
+        }
+        withDeviceTest {
+            enableCoverage = true
+        }
     }
 
     compilerOptions {
@@ -69,7 +72,7 @@ kotlin {
             implementation(libs.k1ra.network)
             implementation(libs.k1ra.sharedpref)
 
-            implementation(libs.bundles.sqldelight.common)
+            implementation(libs.androidx.room3.runtime)
 
             implementation(libs.uuid)
 
@@ -77,9 +80,9 @@ kotlin {
 
             implementation(libs.oshi.core)
 
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.ui)
+            implementation(libs.compose.runtime)
+            implementation(libs.compose.foundation)
+            implementation(libs.compose.ui)
         }
 
         commonTest.dependencies {
@@ -87,39 +90,38 @@ kotlin {
         }
 
         androidMain.dependencies {
-            implementation(libs.sqldelight.driver.android)
-            implementation(libs.sqldelight.driver.jdbc)
+            implementation(libs.androidx.room3.sqlite)
+
             implementation(libs.androidx.crypto)
         }
 
         iosMain.dependencies {
-            implementation(libs.sqldelight.driver.ios)
+            implementation(libs.androidx.room3.sqlite)
         }
 
         jvmMain.dependencies {
-            implementation(libs.sqldelight.driver.jdbc)
+            implementation(libs.androidx.room3.sqlite)
         }
 
         wasmJsMain.dependencies {
             implementation(libs.kotlinx.browser)
-            implementation(libs.sqldelight.driver.web)
-            implementation(npm("@cashapp/sqldelight-sqljs-worker", libs.versions.sqlDelight.get()))
-            implementation(npm("sql.js", libs.versions.sqlJs.get()))
-            implementation(devNpm("copy-webpack-plugin", libs.versions.webPackPlugin.get()))
+
+            implementation(libs.androidx.room3.sqlite.web)
+            implementation(libs.androidx.sqlite.opfs)
         }
     }
 }
 
-android {
-    namespace = "net.k1ra.flight_data_recorder"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-    }
+dependencies {
+    add("kspAndroid", libs.androidx.room3.compiler)
+    add("kspIosSimulatorArm64", libs.androidx.room3.compiler)
+    add("kspIosArm64", libs.androidx.room3.compiler)
+    add("kspJvm", libs.androidx.room3.compiler)
+    add("kspWasmJs", libs.androidx.room3.compiler)
+}
+
+room3 {
+    schemaDirectory("$projectDir/schemas")
 }
 
 publishing {
@@ -138,8 +140,8 @@ publishing {
 
 tasks{
     register<Jar>("dokkaJar") {
-        from(dokkaHtml)
-        dependsOn(dokkaHtml)
+        from(dokkaGeneratePublicationHtml)
+        dependsOn(dokkaGeneratePublicationHtml)
         archiveClassifier.set("javadoc")
     }
 }

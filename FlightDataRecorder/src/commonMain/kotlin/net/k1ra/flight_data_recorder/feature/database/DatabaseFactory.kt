@@ -1,10 +1,12 @@
 package net.k1ra.flight_data_recorder.feature.database
 
-import net.k1ra.flight_data_recorder.database.BatchLogStoreQueries
+import androidx.room3.RoomDatabase
+import net.k1ra.sharedprefkmm.util.IODispatcher
 
+/** Platform builder, including the SQLiteDriver. Must be built (not just constructed) so Room initializes its coroutine scope. */
+internal expect fun createDatabaseBuilder(collection: String): RoomDatabase.Builder<LogDatabase>
 
-internal object DatabaseFactory {
-    suspend fun provideDatabase(collection: String) : BatchLogStoreQueries {
-        return BatchLogStoreQueries(DriverFactory.createDriver(collection))
-    }
-}
+internal fun buildLogDatabase(collection: String): LogDatabase =
+    createDatabaseBuilder(collection)
+        .setQueryCoroutineContext(IODispatcher)
+        .build()

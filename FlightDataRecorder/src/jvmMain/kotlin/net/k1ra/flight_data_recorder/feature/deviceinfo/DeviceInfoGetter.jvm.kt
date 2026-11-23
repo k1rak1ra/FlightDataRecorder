@@ -11,7 +11,7 @@ internal actual object DeviceInfoGetter {
     }
 
     actual fun getOsVersion(): String {
-        return si.operatingSystem.versionInfo.version
+        return si.operatingSystem.versionInfo.version ?: "Unknown"
     }
 
     actual fun getNumCpuCores(): Int {

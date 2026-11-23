@@ -1,41 +1,43 @@
 [versions]
-agp = "8.13.2"
-android-compileSdk = "36"
+agp = "9.3.3"
+android-compileSdk = "37.1"
 android-minSdk = "24"
-android-targetSdk = "36"
+android-targetSdk = "37"
 androidx-activityCompose = "1.13.0"
-androidx-lifecycle = "2.10.0"
-compose = "1.11.1"
-kotlin = "2.4.0"
-ktor = "3.5.0"
-logback = "1.5.34"
+compose = "1.13.0-rc01"
+kotlin = "2.4.21"
+kotlin-serialization = "1.13.0"
 kotlin-coroutines = "1.11.0"
 kotlin-datetime = "0.8.0"
-kotlin-serialization = "1.11.0"
-k1ra-network = "1.3.0"
-k1ra-sharedpref = "1.3.0"
-sqlDelight = "2.3.2"
-uuid = "0.8.4"
 androidx-crypto = "1.1.0"
 korlibs = "6.0.1"
-kover = "0.9.8"
-dokka = "2.2.0"
-exposed = "1.3.0"
-postgres = "42.7.11"
-argon2 = "2.12"
-koin = "4.2.1"
-oshi = "6.11.1"
-sqlJs = "1.8.0"
-webPackPlugin = "9.1.0"
+kover = "0.9.11"
+dokka = "2.3.0"
 browser = "0.5.0"
-viewmodel = "2.10.0"
-navigation = "2.9.2"
-eizo = "1.3.0"
-maxmind = "5.1.0"
-mapCompose = "1.1.0"
-qrose = "1.1.2"
+materialIconsExtended = "1.7.3"
+room3 = "3.1.0-alpha04"
+sqlite = "2.8.0-alpha04"
+ksp = "2.3.14"
+opfs-driver = "0.5.0-alpha.11"
+uuid = "0.8.4"
+androidx-lifecycle = "2.11.0"
+ktor = "3.6.1"
+logback = "1.6.7"
+k1ra-network = "2.0.0"
+k1ra-sharedpref = "2.0.3"
+exposed = "1.6.1"
+postgres = "42.7.14"
+argon2 = "2.12"
+koin = "4.2.2"
+oshi = "7.8.0"
+viewmodel = "2.11.0"
+navigation = "2.10.0"
+eizo = "2.0.0"
+maxmind = "5.2.0"
+mapCompose = "1.1.7"
+qrose = "1.3.1"
 pickncrop = "1.1.0"
-aws = "1.6.93"
+aws = "1.9.38"
 ldaptive = "2.5.1"
 
 [libraries]
@@ -44,8 +46,12 @@ androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", nam
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
+compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose" }
+compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose" }
+compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose" }
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
 ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor" }
@@ -62,12 +68,7 @@ kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-j
 k1ra-network = { module = "net.k1ra.hoodies_network_kmm:HoodiesNetworkKmm", version.ref = "k1ra-network" }
 k1ra-sharedpref = { module = "net.k1ra.shared_pref_kmm:SharedPrefKmm", version.ref = "k1ra-sharedpref" }
 k1ra-eizo = { module = "net.k1ra.eizo:Eizo", version.ref = "eizo" }
-sqldelight-driver-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
-sqldelight-driver-jdbc = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
-sqldelight-driver-web = { module = "app.cash.sqldelight:web-worker-driver", version.ref = "sqlDelight" }
-sqldelight-driver-ios = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" }
-sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
-sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelight" }
+material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 uuid = { module = "com.benasher44:uuid", version.ref="uuid" }
 androidx-crypto = { module = "androidx.security:security-crypto", version.ref="androidx-crypto" }
 korlibs-crypto = { module = "com.soywiz:korlibs-crypto", version.ref="korlibs" }
@@ -90,22 +91,22 @@ qrose = { module = "io.github.alexzhirkevich:qrose", version.ref = "qrose" }
 k1ra-pickncrop = { module = "net.k1ra.kotlin_image_pick_n_crop:KotlinImagePickNCrop", version.ref = "pickncrop" }
 aws-s3 = { module = "aws.sdk.kotlin:s3", version.ref = "aws" }
 ldaptive = { module = "org.ldaptive:ldaptive", version.ref = "ldaptive" }
+androidx-room3-sqlite = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+androidx-room3-sqlite-web = { module = "androidx.sqlite:sqlite-web", version.ref = "sqlite" }
+androidx-sqlite-opfs = { module = "com.eygraber:sqldelight-androidx-driver-opfs", version.ref = "opfs-driver" }
+androidx-room3-runtime = { module = "androidx.room3:room3-runtime", version.ref = "room3" }
+androidx-room3-compiler = { module = "androidx.room3:room3-compiler", version.ref = "room3" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
+androidLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-
-[bundles]
-sqldelight-common = [
-    "sqldelight-runtime",
-    "sqldelight-coroutines"
-]
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+room = { id = "androidx.room3", version.ref = "room3" }

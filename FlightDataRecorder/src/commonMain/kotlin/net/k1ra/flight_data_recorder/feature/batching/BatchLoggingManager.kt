@@ -1,22 +1,23 @@
 package net.k1ra.flight_data_recorder.feature.batching
 
 import androidx.compose.ui.text.intl.Locale
-import app.cash.sqldelight.async.coroutines.awaitAsList
-import app.cash.sqldelight.async.coroutines.awaitAsOne
 import com.benasher44.uuid.uuid4
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
-import net.k1ra.flight_data_recorder.database.BatchLogStoreQueries
 import net.k1ra.flight_data_recorder.feature.config.FlightDataRecorderConfig
 import net.k1ra.flight_data_recorder.feature.cryptography.CipherMode
 import net.k1ra.flight_data_recorder.feature.cryptography.Cryptography
-import net.k1ra.flight_data_recorder.feature.database.DatabaseFactory
+import net.k1ra.flight_data_recorder.feature.database.LogDao
+import net.k1ra.flight_data_recorder.feature.database.LogEntity
+import net.k1ra.flight_data_recorder.feature.database.buildLogDatabase
 import net.k1ra.flight_data_recorder.feature.deviceinfo.DeviceInfoGetter
 import net.k1ra.flight_data_recorder.feature.logging.LogLevels
 import net.k1ra.flight_data_recorder.feature.model.FlightDataRecorderMetadata
@@ -32,7 +33,9 @@ internal class BatchLoggingManager(val appKey: String) {
     private val collection = "$appKey-FDRLogs"
     private val prefs = SharedPreferences(collection)
     private val crypto = Cryptography(prefs)
-    private var db: BatchLogStoreQueries? = null
+    private var db: LogDao? = null
+    private val dbMutex = Mutex()
+    val writeMutex = Mutex()
     private var deviceUniqueId: String? = null
     private val httpClient = HoodiesNetworkClient.Builder().apply {
         defaultHeaders = mapOf("Authorization" to "Bearer $appKey")
@@ -41,23 +44,24 @@ internal class BatchLoggingManager(val appKey: String) {
         retryDelayDuration = 10.seconds
     }.build()
 
-    private suspend fun getDb(): BatchLogStoreQueries {
-        if (db == null)
-            db = DatabaseFactory.provideDatabase(collection)
-        return db!!
+    private suspend fun getDb(): LogDao {
+        db?.let { return it }
+        return dbMutex.withLock {
+            db ?: buildLogDatabase(collection).getDao().also { db = it }
+        }
     }
 
     //Start log line count watchdog
     private val watchdogJob = CoroutineScope(IODispatcher).launch {
         while (true) {
             try {
-                if (getDb().countAll().awaitAsOne() > FlightDataRecorderConfig.batchLimit) {
+                if (getDb().countAll() > FlightDataRecorderConfig.batchLimit) {
                     //Fetch stored logs and get ID of last line
-                    val allLogs = getDb().getAll().awaitAsList()
+                    val allLogs = getDb().getAll()
                     val maxId = allLogs.last().id
 
                     //Decrypt all logs and convert to JsonArray
-                    val jsonArr = JsonArray(allLogs.map { Json.parseToJsonElement(crypto.runAes(it.data_, it.iv, CipherMode.DECRYPT).decodeToString()) })
+                    val jsonArr = JsonArray(allLogs.map { Json.parseToJsonElement(crypto.runAes(it.data, it.iv, CipherMode.DECRYPT).decodeToString()) })
 
                     var logServer = FlightDataRecorderConfig.logServer ?: ""
                     if (logServer.last() == '/')
@@ -65,11 +69,11 @@ internal class BatchLoggingManager(val appKey: String) {
 
                     //Upload to server and delete from DB if uploaded successfully
                     if (httpClient.post<Unit, ByteArray>("$logServer/client/batchupload", jsonArr.toString().encodeToByteArray()) is Success)
-                        getDb().deleteBeforeId(maxId)
+                        writeMutex.withLock { getDb().deleteBeforeId(maxId) }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                getDb().deleteBeforeId(Long.MAX_VALUE)
+                writeMutex.withLock { getDb().deleteBeforeId(Long.MAX_VALUE) }
             }
 
             //Wait a while before repeating the loop
@@ -84,13 +88,13 @@ internal class BatchLoggingManager(val appKey: String) {
         //Encrypt the log line
         var iv = crypto.generateIv()
 
-        while(getDb().getByIv(iv).awaitAsOne() > 0)
+        while(getDb().getByIv(iv) > 0)
             iv = crypto.generateIv()
 
         val logEncrypted = crypto.runAes(logJson.encodeToByteArray(), iv, CipherMode.ENCRYPT)
 
         //Insert the log line into the DB
-        getDb().insert(logEncrypted, iv)
+        writeMutex.withLock { getDb().insert(LogEntity(data = logEncrypted, iv = iv)) }
 
         //Start watchdog thread if inactive
         if (!watchdogJob.isActive)

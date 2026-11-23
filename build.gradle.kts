@@ -10,4 +10,6 @@ plugins {
     alias(libs.plugins.ktor) apply false
     alias(libs.plugins.kotlinJvm) apply false
     alias(libs.plugins.dokka) apply false
+    alias(libs.plugins.room) apply false
+    alias(libs.plugins.ksp) apply false
 }
