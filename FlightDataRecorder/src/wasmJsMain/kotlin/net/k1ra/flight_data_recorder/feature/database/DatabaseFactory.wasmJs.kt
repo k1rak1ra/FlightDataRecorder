@@ -8,5 +8,5 @@ import com.eygraber.sqldelight.androidx.driver.opfs.opfsWorker
 internal actual fun createDatabaseBuilder(collection: String): RoomDatabase.Builder<LogDatabase> {
     return Room.databaseBuilder<LogDatabase>("FDR-$collection.db") {
         LogDatabaseConstructor.initialize()
-    }.setDriver(WebWorkerSQLiteDriver(opfsWorker().worker))
+    }.setDriver(WebWorkerSQLiteDriver(opfsWorker().worker)).setJournalMode(RoomDatabase.JournalMode.TRUNCATE)
 }
